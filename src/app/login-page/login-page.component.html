@@ -3,21 +3,23 @@
     <div class="title-logo-container">
       <img class="title-logo" src="/assets/images/logo.svg" />
     </div>
-    <h1 class="login-title">Bejelentkezés</h1>
-    <mat-card-content>
-      <p>Felhasználónév</p>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Outline form field</mat-label>
-          <input matInput placeholder="Placeholder" />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-      </div>
-      <p>Jelszó</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Bejelentkezés</button>
-    </mat-card-actions>
+    <div class="login-form">
+      <mat-form-field appearance="outline" class="login-username">
+        <mat-label>Felhasználónév</mat-label>
+        <input matInput placeholder="Felhasználónév" [(ngModel)]="username" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="login-password">
+        <mat-label>Jelszó</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Jelszó"
+          [(ngModel)]="password"
+        />
+      </mat-form-field>
+      <button mat-raised-button class="login-button" (click)="login()">
+        Bejelentkezés
+      </button>
+    </div>
   </mat-card>
 </div>

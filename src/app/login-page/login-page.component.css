@@ -6,6 +6,7 @@
   margin: auto;
   width: 25rem;
   max-width: 100%;
+  margin-bottom: 2rem;
 }
 
 .title-logo-container {
@@ -22,4 +23,21 @@
 .mat-card {
   background: #262626;
   color: #e8e8e8;
+}
+
+.login-button {
+  width: 100%;
+}
+
+.login-username {
+  width: 100%;
+}
+
+.login-password {
+  width: 100%;
+}
+
+.login-form {
+  width: 18rem;
+  margin: auto;
 }

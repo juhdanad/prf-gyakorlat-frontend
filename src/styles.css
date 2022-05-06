@@ -16,3 +16,9 @@ body {
   mix-blend-mode: hard-light;
   background: #bfbfbf;
 }
+
+.snack-bar-error {
+  background-color: #600;
+  color: white;
+  font-weight: bold;
+}
