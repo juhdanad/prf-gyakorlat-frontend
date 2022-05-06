@@ -1,0 +1,25 @@
+.login-card {
+  margin: auto;
+}
+
+.title-logo {
+  margin: auto;
+  width: 25rem;
+  max-width: 100%;
+}
+
+.title-logo-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.login-title {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.mat-card {
+  background: #262626;
+  color: #e8e8e8;
+}

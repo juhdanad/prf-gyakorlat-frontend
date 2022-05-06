@@ -1,0 +1,16 @@
+.not-found-title {
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  font-size: 30pt;
+  padding-top: 2rem;
+}
+
+.not-found-text {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  padding-bottom: 2rem;
+}

@@ -1,0 +1,22 @@
+.background {
+  min-height: 100%;
+  background: repeating-radial-gradient(
+    circle at 90% 80%,
+    #f00 0,
+    #ff6b00,
+    #d4ff00,
+    #51ff00,
+    #00ffb6,
+    #b0f,
+    #ff0061,
+    #f00 50%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.background router-outlet {
+  flex-grow: 0;
+}
