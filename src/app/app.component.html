@@ -1,3 +1,13 @@
 <div class="background">
+  <div
+    *ngFor="let cover of covers"
+    class="disable-rainbow"
+    [style]="{
+      top: cover.top,
+      left: cover.left,
+      width: cover.width,
+      height: cover.height
+    }"
+  ></div>
   <router-outlet></router-outlet>
 </div>

@@ -15,8 +15,14 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
+  position: relative;
 }
 
 .background router-outlet {
   flex-grow: 0;
+}
+
+.disable-rainbow {
+  background: gray;
+  position: absolute;
 }

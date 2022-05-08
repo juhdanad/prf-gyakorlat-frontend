@@ -3,23 +3,29 @@
     <div class="title-logo-container">
       <img class="title-logo" src="/assets/images/logo.svg" />
     </div>
-    <div class="login-form">
+    <form class="login-form" (ngSubmit)="login()">
       <mat-form-field appearance="outline" class="login-username">
         <mat-label>Felhasználónév</mat-label>
-        <input matInput placeholder="Felhasználónév" [(ngModel)]="username" />
+        <input
+          matInput
+          placeholder="Felhasználónév"
+          name="username"
+          [(ngModel)]="username"
+        />
       </mat-form-field>
       <mat-form-field appearance="outline" class="login-password">
         <mat-label>Jelszó</mat-label>
         <input
-          type="password"
           matInput
+          type="password"
           placeholder="Jelszó"
+          name="password"
           [(ngModel)]="password"
         />
       </mat-form-field>
-      <button mat-raised-button class="login-button" (click)="login()">
+      <button mat-raised-button type="submit" class="login-button">
         Bejelentkezés
       </button>
-    </div>
+    </form>
   </mat-card>
 </div>

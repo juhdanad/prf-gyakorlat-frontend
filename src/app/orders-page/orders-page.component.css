@@ -1,0 +1,10 @@
+.order-card {
+  background: #262626;
+  color: #e8e8e8;
+  margin-bottom: 1rem;
+}
+
+.order-total {
+  font-size: 14pt;
+  font-weight: bold;
+}

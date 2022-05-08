@@ -1,0 +1,40 @@
+<div class="top-level-page">
+  <app-header-menu></app-header-menu>
+  <div>
+    <div class="main-content">
+      <h1 class="page-header">Kosár</h1>
+      <mat-card class="summary-card">
+        <h2 class="product-title">Összesen: {{ total | async }} Ft</h2>
+        <button
+          mat-raised-button
+          class="product-to-cart-button"
+          (click)="buy()"
+        >
+          Megveszem
+        </button>
+      </mat-card>
+      <mat-card class="product-card" *ngFor="let product of cart | async">
+        <img
+          [src]="product.product.imageURL || '/assets/images/paintbucket.svg'"
+          class="product-image"
+          #productImage
+        />
+        <div class="product-details">
+          <div class="product-title-row">
+            <h2 class="product-title">
+              {{ product.product.name }}
+            </h2>
+            <span class="product-price"
+              >{{ product.product.price }} Ft * {{ product.quantity }} =
+              {{ product.quantity * product.product.price }} Ft</span
+            >
+            <button mat-icon-button (click)="deleteProduct(product.product)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <p class="product-description">{{ product.product.description }}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

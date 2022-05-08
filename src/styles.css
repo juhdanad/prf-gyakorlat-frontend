@@ -22,3 +22,20 @@ body {
   color: white;
   font-weight: bold;
 }
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
+}
+
+h1.page-header {
+  color: #3c3c3c;
+  font-weight: bold;
+  font-size: 36pt;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

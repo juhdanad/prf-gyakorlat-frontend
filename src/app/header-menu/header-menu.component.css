@@ -1,0 +1,25 @@
+.top-header {
+  display: flex;
+  align-items: center;
+  background: #171717;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: flex-end;
+}
+
+.header-logo {
+  height: 2rem;
+  width: 13rem;
+  object-fit: contain;
+}
+
+.header-username {
+  margin-left: auto;
+  margin-right: 2rem;
+  color: #ccc;
+}
+
+.nav-button {
+  color: #ccc;
+  margin-left: 1rem;
+}

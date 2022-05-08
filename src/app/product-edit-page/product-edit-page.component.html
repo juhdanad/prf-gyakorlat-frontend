@@ -1,0 +1,39 @@
+<div class="top-level-page">
+  <app-header-menu></app-header-menu>
+  <h1 class="page-header">Termék szerkesztése</h1>
+  <mat-card class="product-edit-card">
+    <form class="edit-form" (ngSubmit)="saveProduct()">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Termék neve</mat-label>
+        <input matInput name="productname" [(ngModel)]="product.name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Kép URL</mat-label>
+        <input matInput name="producturl" [(ngModel)]="product.imageURL" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Ár (Ft)</mat-label>
+        <input matInput name="productprice" [(ngModel)]="product.price" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Raktáron lévő mennyiség</mat-label>
+        <input
+          matInput
+          name="productquantity"
+          [(ngModel)]="product.quantityLeft"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field-area">
+        <mat-label>Leírás</mat-label>
+        <textarea
+          matInput
+          name="productdesc"
+          [(ngModel)]="product.description"
+        ></textarea>
+      </mat-form-field>
+      <button mat-raised-button type="submit" class="save-button">
+        Mentés
+      </button>
+    </form>
+  </mat-card>
+</div>

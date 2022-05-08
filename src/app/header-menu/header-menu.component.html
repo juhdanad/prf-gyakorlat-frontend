@@ -1,0 +1,10 @@
+<header class="top-header">
+  <img class="header-logo" src="/assets/images/logo.svg" />
+  <button mat-button class="nav-button" routerLink="/">Termékek</button>
+  <button mat-button class="nav-button" routerLink="/cart">Kosár</button>
+  <button mat-button class="nav-button" routerLink="/orders">Rendelések</button>
+  <div class="header-username">Bejelentkezve: {{ username | async }}</div>
+  <button mat-raised-button class="logout-button" (click)="logout()">
+    Kijelentkezés
+  </button>
+</header>
