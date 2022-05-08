@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs';
 import { AppComponent } from '../app.component';
 import { CartService } from '../cart.service';
-import { Product } from '../product.service';
+import { Product, ProductService } from '../product.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -22,40 +22,7 @@ import { UserService } from '../user.service';
 export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('productImage') images!: QueryList<ElementRef>;
 
-  products: Product[] = [
-    {
-      id: 'a',
-      name: 'Falfesték 1',
-      description: 'Ez egy szép szürke falfesték.',
-      imageURL: '/assets/images/paintbucket.svg',
-      price: 300,
-      quantityLeft: 4,
-    },
-    {
-      id: 'b',
-      name: 'Falfesték 1',
-      description: 'Ez egy szép szürke falfesték.',
-      imageURL: '/assets/images/paintbucket.svg',
-      price: 300,
-      quantityLeft: 4,
-    },
-    {
-      id: 'c',
-      name: 'Falfesték 1',
-      description: 'Ez egy szép szürke falfesték.',
-      imageURL: '/assets/images/paintbucket.svg',
-      price: 300,
-      quantityLeft: 4,
-    },
-    {
-      id: 'd',
-      name: 'Falfesték 1',
-      description: 'Ez egy szép szürke falfesték.',
-      imageURL: '/assets/images/paintbucket.svg',
-      price: 300,
-      quantityLeft: 4,
-    },
-  ];
+  products: Product[] = [];
 
   inputs: Partial<Record<string, string>> = {};
 
@@ -63,7 +30,8 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly app: AppComponent,
     private readonly cartService: CartService,
     private readonly snackBar: MatSnackBar,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly productService: ProductService
   ) {}
 
   get isAdmin() {
@@ -76,7 +44,18 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  private loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: (list) => (this.products = list),
+      error: (err: Error) => {
+        this.snackBar.open(err.message);
+      },
+    });
+  }
 
   ngAfterViewInit(): void {
     this.images.changes.subscribe(() => this.onImagesChange());
@@ -96,7 +75,7 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toCart(product: Product) {
     try {
-      const quantity = parseInt(this.inputs[product.id] || '');
+      const quantity = parseInt(this.inputs[product._id] || '');
       if (quantity > 0) {
         this.cartService.addToCart(product, quantity);
       } else {
@@ -105,5 +84,16 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
     } catch (e: any) {
       this.snackBar.open(e.message);
     }
+  }
+
+  deleteProduct(product: Product) {
+    this.productService.deleteProduct(product._id).subscribe({
+      next: () => {
+        this.loadProducts();
+      },
+      error: (error: Error) => {
+        this.snackBar.open(error.message);
+      },
+    });
   }
 }

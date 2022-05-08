@@ -4,11 +4,16 @@
 
 .product-card {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   background: #262626;
   color: #e8e8e8;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 40rem) {
+  .product-card {
+    flex-wrap: wrap;
+  }
 }
 
 .product-image {

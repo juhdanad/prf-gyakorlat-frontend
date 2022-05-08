@@ -33,7 +33,7 @@ export class CartService {
   }
 
   addToCart(product: Product, quantity: number) {
-    const item = this.items[product.id];
+    const item = this.items[product._id];
     if (item) {
       const newQuantity = item.quantity + quantity;
       if (newQuantity > product.quantityLeft) {
@@ -44,13 +44,13 @@ export class CartService {
       if (quantity > product.quantityLeft) {
         throw new Error('Nincs elég a termékből raktáron!');
       }
-      this.items[product.id] = { product: product, quantity: quantity };
+      this.items[product._id] = { product: product, quantity: quantity };
     }
     this.onItemsChange();
   }
 
   removeFromCart(product: Product) {
-    delete this.items[product.id];
+    delete this.items[product._id];
     this.onItemsChange();
   }
 

@@ -26,11 +26,15 @@
             <button
               mat-icon-button
               *ngIf="isAdmin | async"
-              [routerLink]="'/product-edit/' + product.id"
+              [routerLink]="'/product-edit/' + product._id"
             >
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button *ngIf="isAdmin | async">
+            <button
+              mat-icon-button
+              *ngIf="isAdmin | async"
+              (click)="deleteProduct(product)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -38,12 +42,12 @@
           <div class="product-shop-options">
             <div class="product-inventory">
               Készleten: {{ product.quantityLeft }} db, kosárban
-              {{ cartNumber(product.id) | async }} db
+              {{ cartNumber(product._id) | async }} db
             </div>
             <input
               placeholder="Darab"
               class="product-quantity"
-              [(ngModel)]="inputs[product.id]"
+              [(ngModel)]="inputs[product._id]"
             />
             <button
               mat-raised-button
