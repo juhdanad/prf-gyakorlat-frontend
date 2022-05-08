@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map, tap } from 'rxjs';
 import { Product } from './product.service';
 
 export type Cart = Record<
@@ -23,7 +24,7 @@ export class CartService {
     return this.cartItemsSubject.asObservable();
   }
 
-  constructor() {
+  constructor(private readonly http: HttpClient) {
     let items = {};
     try {
       items = JSON.parse(localStorage.getItem('cartcontent') || '{}');
@@ -62,5 +63,23 @@ export class CartService {
   onItemsChange() {
     localStorage.setItem('cartcontent', JSON.stringify(this.items));
     this.cartItemsSubject.next(this.items);
+  }
+
+  buyAll() {
+    return this.http
+      .post<{ message: string }>('/api/shop', {
+        orders: Object.values(this.items).map((o) => ({
+          _id: o.product._id,
+          quantity: o.quantity,
+        })),
+      })
+      .pipe(tap(() => this.clear()))
+      .pipe(
+        catchError((err) => {
+          throw new Error(
+            err.error.error || err.message || 'Hiba a termékek lekérése során!'
+          );
+        })
+      );
   }
 }

@@ -23,6 +23,12 @@ body {
   font-weight: bold;
 }
 
+.snack-bar-success {
+  background-color: rgb(12, 102, 0);
+  color: white;
+  font-weight: bold;
+}
+
 .main-content {
   display: flex;
   flex-direction: column;

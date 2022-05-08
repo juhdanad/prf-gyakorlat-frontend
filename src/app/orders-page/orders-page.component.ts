@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../order.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Order, OrderService } from '../order.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,54 +9,36 @@ import { UserService } from '../user.service';
   styleUrls: ['./orders-page.component.css'],
 })
 export class OrdersPageComponent implements OnInit {
-  orders: Order[] = [
-    {
-      username: 'juhdanad',
-      date: new Date(),
-      id: 'as23df',
-      products: [
-        { name: 'szürke festék', quantity: 3, subtotal: 1200 },
-        { name: 'fehér festék', quantity: 4, subtotal: 300 },
-      ],
-      total: 2400,
-    },
-    {
-      username: 'juhdanad',
-      date: new Date(),
-      id: 'as23df',
-      products: [
-        { name: 'szürke festék', quantity: 3, subtotal: 1200 },
-        { name: 'fehér festék', quantity: 4, subtotal: 300 },
-      ],
-      total: 2400,
-    },
-    {
-      username: 'juhdanad',
-      date: new Date(),
-      id: 'as23df',
-      products: [
-        { name: 'szürke festék', quantity: 3, subtotal: 1200 },
-        { name: 'fehér festék', quantity: 4, subtotal: 300 },
-      ],
-      total: 2400,
-    },
-    {
-      username: 'juhdanad',
-      date: new Date(),
-      id: 'as23df',
-      products: [
-        { name: 'szürke festék', quantity: 3, subtotal: 1200 },
-        { name: 'fehér festék', quantity: 4, subtotal: 300 },
-      ],
-      total: 2400,
-    },
-  ];
+  orders: Order[] = [];
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly orderService: OrderService,
+    private readonly snackBar: MatSnackBar
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadOrders();
+  }
+
+  private loadOrders() {
+    this.orderService.getOrders().subscribe({
+      next: (list) => (this.orders = list),
+      error: (err: Error) => {
+        this.snackBar.open(err.message);
+      },
+    });
+  }
 
   get isAdmin() {
     return this.userService.isAdmin;
+  }
+
+  dateToString(date: Date | string) {
+    date = new Date(date);
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${date.getFullYear()}. ${
+      date.getMonth() + 1
+    }. ${date.getDate()}. ${date.getHours()}:${minutes}`;
   }
 }

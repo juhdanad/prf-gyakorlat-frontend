@@ -44,6 +44,12 @@ export class MainPageComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
+  get hasCartContent() {
+    return this.cartService.cartItems.pipe(
+      map((cart) => Object.keys(cart).length > 0)
+    );
+  }
+
   ngOnInit(): void {
     this.loadProducts();
   }

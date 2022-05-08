@@ -4,11 +4,11 @@
     <div class="main-content">
       <h1 class="page-header">Rendelések</h1>
       <mat-card class="order-card" *ngFor="let order of orders">
-        <h2>Rendelés (azonosító: {{ order.id }})</h2>
+        <h2>Rendelés (azonosító: {{ order._id }})</h2>
         <div *ngIf="isAdmin | async">
           <strong>Felhasználó:</strong> {{ order.username }}
         </div>
-        <div><strong>Dátum:</strong> {{ order.date.toLocaleString() }}</div>
+        <div><strong>Dátum:</strong> {{ dateToString(order.date) }}</div>
         <ul>
           <li *ngFor="let product of order.products">
             <strong>{{ product.name }}</strong> - {{ product.quantity }} db -

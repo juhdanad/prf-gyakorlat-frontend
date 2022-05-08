@@ -5,6 +5,8 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AppComponent } from '../app.component';
 import { CartService } from '../cart.service';
@@ -20,7 +22,9 @@ export class CartPageComponent implements OnInit {
 
   constructor(
     private readonly app: AppComponent,
-    private readonly cartService: CartService
+    private readonly cartService: CartService,
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router
   ) {}
 
   get cart() {
@@ -43,7 +47,17 @@ export class CartPageComponent implements OnInit {
   }
 
   buy() {
-    this.cartService.clear();
+    this.cartService.buyAll().subscribe({
+      next: (res) => {
+        this.snackBar.open(res.message, undefined, {
+          panelClass: 'snack-bar-success',
+        });
+        this.router.navigate(['/orders']);
+      },
+      error: (error: Error) => {
+        this.snackBar.open(error.message);
+      },
+    });
   }
 
   ngOnInit(): void {}

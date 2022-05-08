@@ -61,4 +61,13 @@
       </mat-card>
     </div>
   </div>
+  <button
+    mat-fab
+    color="warn"
+    class="cart-button"
+    routerLink="/cart"
+    *ngIf="hasCartContent | async"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
 </div>

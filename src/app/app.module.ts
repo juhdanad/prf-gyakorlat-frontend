@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,14 +15,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CartPageComponent } from './cart-page/cart-page.component';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
-import { UserService } from './user.service';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
 import { ProductEditPageComponent } from './product-edit-page/product-edit-page.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ProductEditPageComponent } from './product-edit-page/product-edit-page.
     FormsModule,
     MatSnackBarModule,
     MatIconModule,
+    MatBadgeModule,
   ],
   providers: [
     {
